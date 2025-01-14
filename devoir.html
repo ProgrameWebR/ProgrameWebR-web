@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmation Web</title>
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth; 
+        }
+
+        header {
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 3rem;
+            animation: fadeInDown 1.5s ease-out;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            background: rgba(44, 62, 80, 0.9);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: white;
+            background: #3498db;
+            transform: scale(1.1);
+            box-shadow: 0px 4px 15px rgba(52, 152, 219, 0.5);
+        }
+
+        .main-container {
+            padding-top: 120px;
+            flex: 1;
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+            padding: 40px 10%;
+            margin: 20px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            animation: fadeInUp 2s ease;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #ee0979, #ff6a00);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            animation: fadeIn 3s ease-in-out;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Programmation Web</h1>
+    </header>
+
+    <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#intro">Introduction</a>
+        <a href="#basics">Langages de Base</a>
+        <a href="#advanced">Langages Avancés</a>
+        <a href="#files">Fichiers</a>
+        <a href="#comments">Commentaires</a>
+    </nav>
+
+    <div class="main-container">
+        <div class="section" id="accueil">
+            <h2>Accueil</h2>
+            <p>Bienvenue sur notre site dédié à la programmation web. Découvrez les bases, explorez des langages avancés et plus encore !</p>
+        </div>
+
+        <div class="section" id="intro">
+            <h2>Qu'est-ce que la Programmation Web?</h2>
+            <p>La programmation web est l'art de créer des sites web et des applications dynamiques accessibles via Internet.</p>
+        </div>
+
+        <div class="section" id="basics">
+            <h2>Les Langages de Base</h2>
+            <p>Les trois principaux langages utilisés en programmation web sont :</p>
+            <ul>
+                <li><b>HTML</b> : Structure des pages web.</li>
+                <li><b>CSS</b> : Style et présentation visuelle.</li>
+                <li><b>JavaScript</b> : Ajout d'interactivité.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="advanced">
+            <h2>Les Langages Avancés</h2>
+            <p>Les langages comme Python, PHP, et Java sont utilisés pour des projets plus complexes et dynamiques.</p>
+        </div>
+
+        <div class="section" id="files">
+            <h2>Téléchargez des Fichiers</h2>
+            <a href="docs/guide-html.pdf" download>Guide HTML</a><br>
+            <a href="docs/guide-css.pdf" download>Guide CSS</a><br>
+            <a href="docs/guide-javascript.pdf" download>Guide JavaScript</a>
+        </div>
+
+        <div class="section" id="comments">
+            <h2>Ajoutez un Commentaire</h2>
+            <textarea placeholder="Écrivez votre commentaire ici..."></textarea>
+            <button>Envoyer</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Programmation Web. Tous droits réservés.</p>
+        <p>Créé par : BOUZINE Radia</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.classList.add('active');
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+        document.querySelector('a[href="#accueil"]').addEventListener('click', () => {
+            document.getElementById('accueil').classList.add('active');
+        });
+    </script>
+
+</body>
+</html>
